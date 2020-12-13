@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <!-- TRACKER -->
+        <job name="julioreis_correiosfollowup_tracker" instance="JulioReis\CorreiosFollowup\Cron\Tracker" method="execute">
+            <config_path>julioreis_correiosfollowup/general/cron_execute</config_path>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Correios
+ *
+ * Correios Shipping Method for Magento 2.
+ *
+ * @package ImaginationMedia\Correios
+ * @author Igor Ludgero Miura <igor@imaginationmedia.com>
+ * @copyright Copyright (c) 2017 Imagination Media (https://www.imaginationmedia.com/)
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <!-- Imagination Media Menu -->
+        <add id="ImaginationMedia_Correios::imaginationmedia_general"
+             title="Imagination Media"
+             module="ImaginationMedia_Correios"
+             sortOrder="40"
+             resource="ImaginationMedia_Correios::imaginationmedia_general"
+        />
+
+        <!-- Correios Top Menu -->
+        <add id="ImaginationMedia_Correios::correios_menutop"
+             title="Correios"
+             module="ImaginationMedia_Correios"
+             sortOrder="1"
+             resource="ImaginationMedia_Correios::correios_menutop"
+             parent="ImaginationMedia_Correios::imaginationmedia_general"
+        />
+
+        <!-- Correios Submenu -->
+        <add id="ImaginationMedia_Correios::correios_menuoption1"
+             title="Postcode Tracks"
+             module="ImaginationMedia_Correios"
+             sortOrder="2"
+             resource="ImaginationMedia_Correios::correios_menuoption1"
+             parent="ImaginationMedia_Correios::correios_menutop"
+             action="correios/cotacoes/index"
+        />
+        <add id="ImaginationMedia_Correios::correios_menuoption2"
+             title="Shipping Method Configuration"
+             module="ImaginationMedia_Correios"
+             sortOrder="3"
+             resource="ImaginationMedia_Correios::correios_menuoption2"
+             parent="ImaginationMedia_Correios::correios_menutop"
+             action="adminhtml/system_config/edit/section/carriers/"
+        />
+        <add id="ImaginationMedia_Correios::correios_menuoption3"
+             title="Post Methods Configuration"
+             module="ImaginationMedia_Correios"
+             sortOrder="4"
+             resource="ImaginationMedia_Correios::correios_menuoption3"
+             parent="ImaginationMedia_Correios::correios_menutop"
+             action="adminhtml/system_config/edit/section/correios_postingmethods_config/"
+        />
+    </menu>
+</config>

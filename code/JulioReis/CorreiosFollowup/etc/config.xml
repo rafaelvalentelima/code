@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <julioreis_correiosfollowup>
+            <general>
+                <enabled>0</enabled>
+                <cron_execute>*/45 * * * *</cron_execute>
+                <change_status>0</change_status>
+                <delivered_order_status>customer_delivered</delivered_order_status>
+                <days_to_expire>30</days_to_expire>
+                <notify_mail>1</notify_mail>
+            </general>
+        </julioreis_correiosfollowup>
+    </default>
+</config>

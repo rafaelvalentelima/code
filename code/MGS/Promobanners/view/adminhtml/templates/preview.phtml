@@ -1,0 +1,133 @@
+<?php if($id = $this->getRequest()->getParam('id')): ?>
+	<?php $banner = $this->getBannerById($id) ?>
+	<div class="banner-preview" id="banner-preview">
+		<div class="promobanner" id="promobanner-container">
+			<a href="#">
+				<img alt="" src="<?php echo $this->getBannerImageUrl($banner) ?>" class="img-responsive" id="img_temp">
+			</a>
+			<div class="text" id="text-container">
+				<div id="text_temp" class="banner-text"></div>
+				<span class="banner-button" id="button-container" style="display:none">
+					<button class="btn btn-default btn-promo-banner"></button>
+				</span>
+			</div>
+		</div>
+	</div>
+<?php else: ?>
+	<div class="banner-preview" id="banner-preview">
+		<div class="promobanner" id="promobanner-container">
+			<a href="#">
+				<img alt="" src="" class="img-responsive" id="img_temp">
+			</a>
+			<div class="text" id="text-container">
+				<div id="text_temp" class="banner-text"></div>
+				<span class="banner-button" id="button-container" style="display:none">
+					<button class="btn btn-default btn-promo-banner"></button>
+				</span>
+			</div>
+		</div>
+	</div>
+<?php endif ?>
+<script type="text/javascript">
+	require([
+		'jquery',
+	], function(jQuery){
+		(function($) {
+			$(window).load(function () {
+				$('#filename').change( function(event) {		
+					var tmppath = URL.createObjectURL(event.target.files[0]);
+					$("#img_temp").attr('src',URL.createObjectURL(event.target.files[0]));		
+				});
+				
+				$("#content").change(function(){
+					updateContent();
+				});
+				
+				$("#button").change(function(){
+					updateButton();
+				});
+				
+				$("#text_align").change(function(){
+					updateTextAlign();
+				});
+				
+				$("#effect").change(function(){
+					updateEffect();
+				});
+				
+				<?php if($this->getRequest()->getParam('id')): ?>
+					updateContent();
+					updateButton();
+					updateTextAlign();
+					updateEffect();
+				<?php endif ?>
+				
+				var previewOffset = $('#banner-preview').offset();
+				var previewWidth = $('#banner-preview').width();
+				leftOffset = previewOffset.left;
+				topOffset = previewOffset.top;
+				styleInline = 'left:'+leftOffset+'px; width:'+previewWidth+'px';
+				
+				$('#banner-preview').attr('style', styleInline)
+				
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > topOffset) {
+						$('#container').addClass('preview-move');
+					} else {
+						$('#container').removeClass('preview-move');
+					}
+				});
+			});
+		})(jQuery);
+	});
+	
+	function updateContent(){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+				$('#text_temp').html($("#content").val());
+			})(jQuery);
+		});
+	}
+	
+	function updateButton(){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+				$('#button-container button').html($("#button").val());
+				if($('#button-container button').html()!=''){
+					$('#button-container').show();
+				}
+				else{
+					$('#button-container').hide();
+				}
+			})(jQuery);
+		});
+	}
+	
+	function updateTextAlign(){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+				textAlign = $("#text_align").val();
+				$('#text-container').attr('class', 'text');
+				$('#text-container').addClass(textAlign);
+			})(jQuery);
+		});
+	}
+	
+	function updateEffect(){
+		require([
+			'jquery',
+		], function(jQuery){
+			(function($) {
+				effect = $("#effect").val();
+				$('#promobanner-container').attr('class', 'promobanner');
+				$('#promobanner-container').addClass(effect);
+			})(jQuery);
+		});
+	}
+</script>

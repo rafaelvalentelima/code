@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Correios
+ *
+ * Correios Shipping Method for Magento 2.
+ *
+ * @package ImaginationMedia\Correios
+ * @author Igor Ludgero Miura <igor@imaginationmedia.com>
+ * @author Douglas Ianitsky <ianitsky@gmail.com>
+ * @copyright Copyright (c) 2017-2019 Imagination Media (https://www.imaginationmedia.com/)
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <correios>
+                <model>ImaginationMedia\Correios\Model\Carrier\Correios</model>
+                <active>1</active>
+            </correios>
+            <imaginationmedia_correios>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>ImaginationMedia\Correios\Model\Carrier\Correios</model>
+                <name>Correios</name>
+                <title>Correios</title>
+                <specificerrmsg>Cálculo não disponível, por favor verifique a conexão com o webservices e as dimensões e peso dos produtos.</specificerrmsg>
+                <function_mode>3</function_mode>
+                <default_height>2</default_height>
+                <default_width>16</default_width>
+                <default_depth>11</default_depth>
+                <webservice_url>http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?StrRetorno=xml</webservice_url>
+                <max_weight>30</max_weight>
+            </imaginationmedia_correios>
+        </carriers>
+        <correios_postingmethods_config>
+            <settings>
+                <methods><![CDATA[{"_1537631079729_729":{"code":"40010","name":"Sedex"},"_1537631089209_209":{"code":"04162","name":"Sedex com contrato"},"_1537631097535_535":{"code":"41106","name":"PAC"},"_1537631104549_549":{"code":"04669","name":"PAC com contrato"},"_1537631113849_849":{"code":"40215","name":"Sedex 10"},"_1537631121853_853":{"code":"40290","name":"Sedex hoje"},"_1537631135489_489":{"code":"40045","name":"Sedex a cobrar"}}]]></methods>
+            </settings>
+        </correios_postingmethods_config>
+    </default>
+</config>

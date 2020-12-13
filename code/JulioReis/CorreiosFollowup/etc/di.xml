@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- *********************************************************************************************************** -->
+    <!-- TYPES DECLARATIONS                                                                                        -->
+    <!-- *********************************************************************************************************** -->
+    <type name="JulioReis\CorreiosFollowup\Model\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <type name="JulioReis\CorreiosFollowup\Model\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">Correios Followup Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">JulioReis\CorreiosFollowup\Model\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Sales\Model\Order\Email\SenderBuilder">
+        <arguments>
+            <argument name="transportBuilderByStore" xsi:type="object">JulioReis\CorreiosFollowup\Model\Mail\Template\TransportBuilderByStore</argument>
+        </arguments>
+    </type>
+</config>

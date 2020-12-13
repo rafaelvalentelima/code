@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Correios
+ *
+ * Correios Shipping Method for Magento 2.
+ *
+ * @package ImaginationMedia\Correios
+ * @author Igor Ludgero Miura <igor@imaginationmedia.com>
+ * @copyright Copyright (c) 2017 Imagination Media (https://www.imaginationmedia.com/)
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="imaginationmedia_correios_updatetracks">
+        <job name="correios_updatetracks" instance="ImaginationMedia\Correios\Cron\UpdateTracks" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>

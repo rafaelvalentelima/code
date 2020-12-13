@@ -1,0 +1,20 @@
+<?php $bannerId = $this->getBannerId() ?>
+<?php $banner = $this->getBannerById($bannerId) ?>
+
+<div class="promobanner<?php echo $this->getCustomClass($banner) ?>">
+	<a<?php if($banner->getUrl()!=''): ?> href="<?php echo $banner->getUrl() ?>"<?php endif ?>>
+		<img alt="" src="<?php echo $this->getBannerImageUrl($banner) ?>" class="img-responsive" />
+	</a>
+	<?php if(($banner->getContent() != '') || ($banner->getButton() != '')): ?>
+		<div class="text<?php if($banner->getTextAlign()!=''): ?> <?php echo $banner->getTextAlign() ?><?php endif ?>">
+			<?php if($banner->getContent() != ''): ?>
+				<div class="banner-text"><?php echo $banner->getContent() ?></div>
+			<?php endif ?>
+			<?php if($banner->getButton() != ''): ?>
+				<span class="banner-button">
+					<button class="btn btn-default btn-promo-banner" onclick="window.location.href='<?php echo $banner->getUrl() ?>'"><?php echo $banner->getButton() ?></button>
+				</span>
+			<?php endif ?>
+		</div>
+	<?php endif ?>
+</div>

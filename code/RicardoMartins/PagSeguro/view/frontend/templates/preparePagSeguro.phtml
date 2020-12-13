@@ -1,0 +1,52 @@
+<?php
+$helper = $this->helper('RicardoMartins\PagSeguro\Helper\Data');
+$viewJsPath = $block->getViewFileUrl('RicardoMartins_PagSeguro::js/pagseguro.js');
+$storeUrl = $helper->getStoreUrl();
+$grandTotal = $helper->getGrandTotal();
+$installments = $helper->getInstallmentQty();
+$visibleCpf = $helper->isCpfVisible() ? '1':'0';
+$visibleDob = $helper->isDobVisible() ? '1':'0';
+$ccPlaceholderImage = $this->getViewFileUrl('RicardoMartins_PagSeguro::images/cc-placeholder.png');
+$isSandbox = $helper->isSandbox() ? 1 : 0;
+?>
+
+<script src="<?php echo $viewJsPath;?>"></script>
+<script type="text/javascript">
+     //<![CDATA[
+    function preparePagSeguro(){
+
+        if(typeof RMPagSeguroObj != "undefined"){
+            <?php if ($helper->isDebugActive()): ?>
+            console.info('PagSeguro was already started.');
+            <?php endif; ?>
+            return;
+        }
+        <?php if ($helper->isDebugActive()): ?>
+        console.info('PagSeguro is initiating. Wait for ready message.');
+        <?php endif; ?>
+            var RMPagSeguroObj = new RMPagSeguro(<?php echo $helper->getConfigJs()?>);
+            console.info('PagSeguro ready');
+            RMPagSeguroObj.addCardFieldsObserver(RMPagSeguroObj);
+            RMPagSeguroObj.setStoreUrl("<?php echo $storeUrl ?>");
+            RMPagSeguroObj.updateBrand();
+            RMPagSeguroObj.setInstallmentsQty(<?php echo $installments;?>);
+            RMPagSeguroObj.getGrandTotal();
+            RMPagSeguroObj.removeUnavailableBanks();
+            RMPagSeguroObj.setCardPlaceHolderImage("<?php echo $ccPlaceholderImage ?>");
+    }
+    window.visibleCpf = <?php echo $visibleCpf ?>;
+    window.visibleDob = <?php echo $visibleDob ?>;
+    window.isSandbox = <?php echo $isSandbox ?>;
+    //preparePagSeguro();
+
+    //]]>
+</script>
+<script>
+   require.config({
+       map: {
+           '*': {
+               'PagseguroDirectMethod':  '<?php echo $helper->getJsUrl(); ?>'
+           }
+       }
+   });
+</script>

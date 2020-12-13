@@ -1,0 +1,63 @@
+<?php
+/**
+ * Solwin Infotech
+ * Solwin ScrolltoTop Extension
+ *
+ * @category   Solwin
+ * @package    Solwin_ScrolltoTop
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/ 
+ */
+?>
+<?php
+$enable = $this->getConfig('scrollsection/scrollgroup/active');
+if ($enable) {
+    $imghtml = $text = $img = $path = '';
+
+    $bgclr = $this->getConfig('scrollsection/scrollgroup/bgclr');
+    $bgHoverClr = $this->getConfig('scrollsection/scrollgroup/bghoverclr');
+    $textclr = $this->getConfig('scrollsection/scrollgroup/textclr');
+    $textHoverClr = $this->getConfig('scrollsection/scrollgroup/texthoverclr');
+    $display = $this->getConfig('scrollsection/scrollgroup/display');
+    $text = $this->getConfig('scrollsection/scrollgroup/link_text');
+    $img = $this->getConfig('scrollsection/scrollgroup/link_image');
+    $hoverImg = $this->getConfig('scrollsection/scrollgroup/link_hover_image');
+    $position = $this->getConfig('scrollsection/scrollgroup/position');
+    if ($img != '') {
+        $path = $this->getBaseUrl() . 'pub/media/scrolltotop/' . $img;
+        $hover_path = $this->getBaseUrl() . 'pub/media/scrolltotop/' . $hoverImg;
+        $imghtml = '<img class="scroll-img default-img" src="' . $path . '" alt="top" />'
+                . '<img class="scroll-img hover-img" src="' . $hover_path . '" alt="top-hover" />';
+    }
+    ?>
+
+    <div id="scroll-to-top">
+        <a class="scrollup" href="#" title="<?php echo __('Scroll to Top');?>" style="<?php if($position == 1) { ?> right:10px; <?php } else { ?> left:10px; <?php } ?> ">
+            <?php
+            if ($display == 2 || $display == 3) {
+                echo $imghtml;
+            }
+            ?>
+            <?php if ($display == 1 || $display == 3) { ?>
+            <span style="<?php if($display == 3) { ?> padding: 0 0 5px;display: block; <?php } else { ?> float: left;padding: 10px 0;text-align: center;width: 100%; <?php } ?>"><?php echo __($text); ?></span>
+            <?php } ?>
+        </a>
+    </div>
+    <?php
+}
+?>
+<style>
+    .scrollup:visited, .scrollup:active {
+        color: <?php echo $textclr; ?>;
+    }
+    .scrollup{
+        color: <?php echo $textclr; ?>;
+        background-color: <?php echo $bgclr; ?>;
+        border-color: <?php echo $bgclr; ?>;
+    }
+    
+    .scrollup:hover {
+        color: <?php echo $textHoverClr;  ?>;
+        background-color: <?php echo $bgHoverClr; ?>;
+    }
+</style>

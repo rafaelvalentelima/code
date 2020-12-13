@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Correios
+ *
+ * Correios Shipping Method for Magento 2.
+ *
+ * @package ImaginationMedia\Correios
+ * @author Igor Ludgero Miura <igor@imaginationmedia.com>
+ * @copyright Copyright (c) 2017 Imagination Media (https://www.imaginationmedia.com/)
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="correios_cotacoes_grid"/>
+        </referenceContainer>
+    </body>
+</page>

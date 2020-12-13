@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="julioreis_correiosfollowup_add_shipment_to_queue"
+                  instance="JulioReis\CorreiosFollowup\Observer\Tracking\Queue\AddShipmentToQueue"/>
+    </event>
+
+    <event name="sales_order_shipment_track_delete_before">
+        <observer name="julioreis_correiosfollowup_delete_shipment_from_queue"
+                  instance="JulioReis\CorreiosFollowup\Observer\Tracking\Queue\DeleteShipmentFromQueue"/>
+    </event>
+
+</config>

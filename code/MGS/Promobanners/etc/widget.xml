@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="promo_banner" class="MGS\Promobanners\Block\Widget\Banner" placeholder_image="MGS_Promobanners::images/widget_banner.png">
+        <label translate="true">MGS Promo Banner</label>
+		<description translate="true">Contents of a Promotion Banner</description>
+        <parameters>
+            <parameter name="banner_id" xsi:type="block" visible="true" required="true" sort_order="0">
+                <label translate="true">Banner</label>
+                <block class="MGS\Promobanners\Block\Adminhtml\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Banner...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="banner.phtml" selected="true">
+                        <label translate="true">Promotion Banner Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

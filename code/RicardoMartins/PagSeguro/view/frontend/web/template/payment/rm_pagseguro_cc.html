@@ -1,0 +1,46 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+        <div data-bind="html: getPagSeguroCcImagesHtml()" id="rm_pagseguro_ccflags"></div>
+    </div>
+    <div class="payment-method-content" id="pagseguro_cc_method">
+        <div id="checkout-messages" class="messages"></div>
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <form class="form" data-bind="attr: {'id': getCode() + '-form'}">
+            <!-- ko template: 'RicardoMartins_PagSeguro/payment/cc-form' --><!-- /ko -->
+        </form>
+
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="actions-toolbar">
+            <!-- ko if: (window.isSandbox)-->
+            <p style="text-align: right;">&#9888; <!-- ko i18n: 'Transação de Teste - Sandbox Ativo'--><!-- /ko --></p>
+            <!-- /ko -->
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        css: {disabled: !isPlaceOrderActionAllowed()},
+                        enable: (getCode() == isChecked())
+                        "
+                        disabled>
+                    <span data-bind="text: $t('Place Order')"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
